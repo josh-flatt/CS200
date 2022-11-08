@@ -1,4 +1,4 @@
-package eclipseHW2;
+package assignment3;
 
 /**
  * CS200 Programming Assignment 3
@@ -8,20 +8,28 @@ package eclipseHW2;
  */
 
 
-public class Sphere implements Shape {
+public class Cone implements Shape {
 	
 	//Fields - All measured in feet
+	private double height;
 	private double diameter;
 	private double weight; // pounds
 	boolean divZeroExcept = false; // enables inhibition of error displayed multiple times per class instance
 	
 	//Constructors
-	public Sphere(double diameter, double weight) {
-		this.diameter = diameter;
+	public Cone(double height, double diameter, double weight) {
 		this.weight = weight;
+		this.diameter = diameter;
+		this.height = height;
+		System.out.println("A Cone of height " + this.height 
+				+ ", diameter " + this.diameter + ", and weight " + this.weight + " lb. created.");
 	}
 	
+	
 	//Setters
+	public void setHeight(double height) {
+		this.height = height;
+	}
 	public void setDiameter(double diameter) {
 		this.diameter = diameter;
 	}
@@ -29,7 +37,11 @@ public class Sphere implements Shape {
 		this.weight = weight;
 	}
 	
+	
 	//Getters
+	public double getHeight() {
+		return this.height;
+	}
 	public double getDiameter() {
 		return this.diameter;
 	}
@@ -37,11 +49,12 @@ public class Sphere implements Shape {
 		return this.weight;
 	}
 	
+	
 	//Methods
 	public double calculateVolume() {
 		double pi = Math.PI;
 		double radius = this.diameter / 2.0;
-		double volume = (4/3) * pi * (radius * radius * radius);
+		double volume = pi * (radius * radius) * (this.height / 3.0);
 		return volume;
 	}
 	
@@ -58,15 +71,14 @@ public class Sphere implements Shape {
 	}
 	
 	public double calculateBestFit() {
-		return (getDiameter() * getDiameter() * getDiameter());
+		return (getDiameter() * getDiameter() * getHeight());
 	}
 	
 	public double calculateWaste() {
 		double containerVolume = calculateBestFit(); // Added for efficiency; redundant calls of calculateBestFit() without.
-		double packageVolume = calculateVolume();    // Added for efficiency; redundant calls of calculateVolume() without.
-		double cubicWaste = containerVolume - packageVolume;
-		double percentWaste = cubicWaste / packageVolume;
-		return percentWaste;
+		double volume = calculateVolume();			 // Added for efficiency
+		double cubicWaste = containerVolume - volume;
+		double percentWaste = cubicWaste / containerVolume;
+		return percentWaste * 100;
 	}
-
 }

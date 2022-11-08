@@ -1,5 +1,3 @@
-package eclipseHW2;
-
 /**
  * CS200 Programming Assignment 3
  *
@@ -22,7 +20,10 @@ public class Box implements Shape {
 		this.length = length;
 		this.width = width;
 		this.height = height;
+		System.out.println("A Box of length " + this.length + ", width " 
+				+ this.width + ", height " + this.height + ", and weight " + this.weight + " lb. created.");
 	}
+	
 	
 	//Setters
 	public void setLength(double length) {
@@ -38,6 +39,7 @@ public class Box implements Shape {
 		this.weight = weight;
 	}
 	
+	
 	//Getters
 	public double getLength() {
 		return this.length;
@@ -52,8 +54,8 @@ public class Box implements Shape {
 		return this.weight;
 	}
 	
-	//Methods
 	
+	//Methods
 	public double calculateVolume() {
 		return (getLength() * getWidth() * getHeight());
 	}
@@ -76,9 +78,9 @@ public class Box implements Shape {
 	
 	public double calculateWaste() {
 		double containerVolume = calculateBestFit(); // Added for efficiency; redundant calls of calculateBestFit() without.
-		double packageVolume = calculateVolume();    // Added for efficiency; redundant calls of calculateVolume() without.
-		double cubicWaste = containerVolume - packageVolume;
-		double percentWaste = cubicWaste / packageVolume;
+		double volume = calculateVolume();			 // Added for efficiency
+		double cubicWaste = containerVolume - volume;
+		double percentWaste = cubicWaste / containerVolume;
 		return percentWaste;
 	}
 }
