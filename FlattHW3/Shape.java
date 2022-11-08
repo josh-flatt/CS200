@@ -1,5 +1,3 @@
-package eclipseHW2;
-
 /**
  * CS200 Programming Assignment 3
  *
@@ -20,6 +18,4 @@ public interface Shape {
 	
 	//Getters
 	public double getWeight();
-	
-	
 }

@@ -1,4 +1,4 @@
-package eclipseHW2;
+package assignment3;
 
 /**
  * CS200 Programming Assignment 3
@@ -8,7 +8,7 @@ package eclipseHW2;
  */
 
 
-public class Cone implements Shape {
+public class Cylinder implements Shape {
 	
 	//Fields - All measured in feet
 	private double height;
@@ -17,11 +17,14 @@ public class Cone implements Shape {
 	boolean divZeroExcept = false; // enables inhibition of error displayed multiple times per class instance
 	
 	//Constructors
-	public Cone(double height, double diameter, double weight) {
+	public Cylinder(double height, double diameter, double weight) {
 		this.weight = weight;
 		this.diameter = diameter;
 		this.height = height;
+		System.out.println("A Cylinder of height " + this.height 
+				+ ", diameter " + this.diameter + ", and weight " + this.weight + " lb. created.");
 	}
+	
 	
 	//Setters
 	public void setHeight(double height) {
@@ -34,6 +37,7 @@ public class Cone implements Shape {
 		this.weight = weight;
 	}
 	
+	
 	//Getters
 	public double getHeight() {
 		return this.height;
@@ -45,11 +49,12 @@ public class Cone implements Shape {
 		return this.weight;
 	}
 	
+	
 	//Methods
 	public double calculateVolume() {
 		double pi = Math.PI;
 		double radius = this.diameter / 2.0;
-		double volume = pi * (radius * radius) * (this.height / 3.0);
+		double volume = pi * (radius * radius) * this.height;
 		return volume;
 	}
 	
@@ -71,10 +76,9 @@ public class Cone implements Shape {
 	
 	public double calculateWaste() {
 		double containerVolume = calculateBestFit(); // Added for efficiency; redundant calls of calculateBestFit() without.
-		double packageVolume = calculateVolume();    // Added for efficiency; redundant calls of calculateVolume() without.
-		double cubicWaste = containerVolume - packageVolume;
-		double percentWaste = cubicWaste / packageVolume;
-		return percentWaste;
+		double volume = calculateVolume();			 // Added for efficiency
+		double cubicWaste = containerVolume - volume;
+		double percentWaste = cubicWaste / containerVolume;
+		return percentWaste * 100;
 	}
-
 }
