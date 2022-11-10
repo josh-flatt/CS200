@@ -20,7 +20,7 @@ public class Box implements Shape {
 		this.length = length;
 		this.width = width;
 		this.height = height;
-		System.out.println("A Box of length " + this.length + ", width " 
+		System.out.print("\nA Box of length " + this.length + ", width " 
 				+ this.width + ", height " + this.height + ", and weight " + this.weight + " lb. created.");
 	}
 	
@@ -81,6 +81,6 @@ public class Box implements Shape {
 		double volume = calculateVolume();			 // Added for efficiency
 		double cubicWaste = containerVolume - volume;
 		double percentWaste = cubicWaste / containerVolume;
-		return percentWaste;
+		return percentWaste * 100;
 	}
 }
