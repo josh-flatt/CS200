@@ -19,7 +19,7 @@ public class Cone implements Shape {
 		this.weight = weight;
 		this.diameter = diameter;
 		this.height = height;
-		System.out.println("A Cone of height " + this.height 
+		System.out.print("\nA Cone of height " + this.height 
 				+ ", diameter " + this.diameter + ", and weight " + this.weight + " lb. created.");
 	}
 	

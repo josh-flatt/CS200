@@ -17,7 +17,7 @@ public class Sphere implements Shape {
 	public Sphere(double diameter, double weight) {
 		this.diameter = diameter;
 		this.weight = weight;
-		System.out.println("A Sphere of diameter " + this.diameter 
+		System.out.print("\nA Sphere of diameter " + this.diameter 
 				+ " and weight " + this.weight + " lb. created.");
 	}
 	

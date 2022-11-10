@@ -18,7 +18,6 @@ public class Program {
 		getInputs(scnr, dimensions);
 		double weight = getWeight(dimensions);
 		
-		System.out.println("\n");
 		Box box = new Box(dimensions.get(0), dimensions.get(1), dimensions.get(2), weight);
 		descendSortDimensions(dimensions);
 		double firstLargestDimension = dimensions.get(0);
@@ -53,7 +52,7 @@ public class Program {
 	
 	public static void printStats(Box box, Cone cone, Cylinder cylinder, Sphere sphere) {
 		
-		System.out.println();
+		System.out.println("\n");
 		System.out.printf("Box volume: %.2f cu ft         Box density: %.2f lbs./cu ft\n", box.calculateVolume(), box.calculateDensity());
 		System.out.printf("Cone volume: %.2f cu ft        Cone density: %.2f lbs./cu ft\n", cone.calculateVolume(), cone.calculateDensity());
 		System.out.printf("Cylinder volume: %.2f cu ft    Cylinder density: %.2f lbs./cu ft\n", cylinder.calculateVolume(), cylinder.calculateDensity());

@@ -19,7 +19,7 @@ public class Cylinder implements Shape {
 		this.weight = weight;
 		this.diameter = diameter;
 		this.height = height;
-		System.out.println("A Cylinder of height " + this.height 
+		System.out.print("\nA Cylinder of height " + this.height 
 				+ ", diameter " + this.diameter + ", and weight " + this.weight + " lb. created.");
 	}
 	
