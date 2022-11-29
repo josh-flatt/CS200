@@ -21,7 +21,7 @@ public class CSVtoArrayList {
         ArrayList<ArrayList<Object>> CSVData = new ArrayList<ArrayList<Object>>();
         
         System.out.println("Welcome to the World Happiness - Corruption Dataset (2015-2020).");
-        CSVData = ImportCSVFile(readBuffer, scnr);
+        CSVData = ImportCSVFile(readBuffer, scnr); // Set this ArrayList equal to all of the CSV data
         while (!acceptedAnswer) {
         	System.out.print("Do you wish to (1) Search or (2) Sort by a column? (Enter 1 or 2): ");
         	try {
@@ -155,7 +155,20 @@ public class CSVtoArrayList {
      return arrlist;
     }
     
-    public static <T extends Comparable<T>> void Sort() {
+    public static <T extends Comparable<T>> void Sort(Character columnToSort, int ascendOrDescend) {
+    	int column = -1;
+    	if (columnToSort == 'a') { column = 0;  }
+    	if (columnToSort == 'b') { column = 1;  }
+    	if (columnToSort == 'c') { column = 2;  }
+    	if (columnToSort == 'd') { column = 3;  }
+    	if (columnToSort == 'e') { column = 4;  }
+    	if (columnToSort == 'f') { column = 5;  }
+    	if (columnToSort == 'g') { column = 6;  }
+    	if (columnToSort == 'h') { column = 7;  }
+    	if (columnToSort == 'i') { column = 8;  }
+    	if (columnToSort == 'j') { column = 9;  }
+    	if (columnToSort == 'k') { column = 10; }
+    	
     	
     }
     
