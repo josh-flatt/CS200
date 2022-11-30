@@ -6,7 +6,9 @@ import java.util.Scanner;
  
 /**
  * adopted from Crunchify.com
- * 
+ * Josh Flatt
+ * CS 200 HW Assignment 4
+ * 29 November 2022
  */
  
 public class CSVtoArrayList {
@@ -16,9 +18,10 @@ public class CSVtoArrayList {
         Scanner scnr = new Scanner(System.in);
         boolean acceptedAnswer = false;
         int searchOrSortDecision = 0;
-        Character columnToSort;
-    	int ascendOrDescend;
-        ArrayList<ArrayList<Object>> CSVData = new ArrayList<ArrayList<Object>>();
+        String country = "";
+        String continent = "";
+        Integer year = 0;
+    	ArrayList<CSVRow> CSVData = new ArrayList<CSVRow>();
         
         System.out.println("Welcome to the World Happiness - Corruption Dataset (2015-2020).");
         CSVData = ImportCSVFile(readBuffer, scnr); // Set this ArrayList equal to all of the CSV data
@@ -39,13 +42,51 @@ public class CSVtoArrayList {
         if (searchOrSortDecision == 1) { //If search was selected
         	System.out.println("Search selected.");
         	System.out.print("Enter the country name: ");
+        	country = scnr.nextLine();
         	System.out.print("Enter the continent: ");
+        	continent = scnr.nextLine();
         	System.out.print("Enter the year to search by (15-20 inclusive): ");
+        	year = scnr.nextInt();
         }
         if (searchOrSortDecision == 2) { //If sort was selected
         	System.out.println("Sort selected.");
         }
-    	acceptedAnswer = false; //Sorting options available for either selection.
+    	Sort(CSVData, scnr);
+    	Search(CSVData, country, continent, year);
+    	PrintRows(CSVData);
+    }
+    
+    public static ArrayList<CSVRow> ImportCSVFile(BufferedReader readBuffer, Scanner scnr) {
+    	ArrayList<CSVRow> CSVData = new ArrayList<CSVRow>();
+    	System.out.print("Enter a full pathname and filename for the input file: ");
+         
+         try {
+             String inputLine;
+             String filePath = scnr.nextLine();
+             if (filePath.equals(null) || filePath.isEmpty()) { 
+             	throw new IOException(); 
+             }
+             readBuffer = new BufferedReader(new FileReader(filePath));
+             System.out.print("Reading file...");
+             readBuffer.readLine(); // Ignore header row
+             while ((inputLine = readBuffer.readLine()) != null) {
+            	CSVRow row = new CSVRow(inputLine);
+             	CSVData.add(row);
+             }
+             System.out.println("Done."); 
+         } 
+         catch (IOException e) {
+             System.out.println("This filename cannot be found.  Exiting.");
+             System.exit(0);
+         }
+         return CSVData;
+    }
+    
+    public static void Sort(ArrayList<CSVRow> CSVData, Scanner scnr) {
+    	Character columnToSort = 'z';
+    	int ascendOrDescend = 0;
+    	int column = -1;
+    	boolean acceptedAnswer = false;
     	while(!acceptedAnswer) {
 	    	System.out.println("Sort by:");
 	    	System.out.println("a. country");
@@ -64,12 +105,11 @@ public class CSVtoArrayList {
 	    	try {
 	    		String rawInput = scnr.nextLine().toLowerCase();
 	    		columnToSort = rawInput.charAt(0);
-	    		if (columnToSort.equals(null)) { throw new IllegalArgumentException(); }
-	    		if (columnToSort < 'a' || columnToSort > 'k') { throw new IllegalArgumentException(); }
+	    		if (columnToSort < 'a' || columnToSort > 'k' ||columnToSort.equals(null)) { 
+	    			throw new IllegalArgumentException();
+	    		}
 	    		acceptedAnswer = true;
-	    	} catch (Exception e) {
-	    		System.out.println("Invalid value.");
-	    	}
+	    	} catch (Exception e) { System.out.println("Invalid value."); }
     	}
     	acceptedAnswer = false;
     	while (!acceptedAnswer) {
@@ -81,103 +121,104 @@ public class CSVtoArrayList {
         			throw new IllegalArgumentException();
         		}
         		acceptedAnswer = true;
-        	} catch (Exception e) {
-        		System.out.println("Invalid input. Enter 1 or 2 only.");
-
-        	}
+        	} catch (Exception e) { System.out.println("Invalid input. Enter 1 or 2 only."); }
         }
-    	PrintRows(CSVData);
+    	switch(columnToSort) {
+	    	case 'a': column = 0; break;
+	    	case 'b': column = 1; break;
+	    	case 'c': column = 2; break;
+	    	case 'd': column = 3; break;
+	    	case 'e': column = 4; break;
+	    	case 'f': column = 5; break;
+	    	case 'g': column = 6; break;
+	    	case 'h': column = 7; break;
+	    	case 'i': column = 8; break;
+	    	case 'j': column = 9; break;
+	    	case 'k': column = 10; break;
+	    	default : column = 0;
+    	}
+    	if (ascendOrDescend == 1) { AscendSort(CSVData, column); }
+    	if (ascendOrDescend == 2) { DescendSort(CSVData, column); }
     }
     
-    public static ArrayList<ArrayList<Object>> ImportCSVFile(BufferedReader readBuffer, Scanner scnr) {
-    	ArrayList<ArrayList<Object>> CSVData = new ArrayList<ArrayList<Object>>();
-    	System.out.print("Enter a full pathname and filename for the input file: ");
-         
-         try {
-             String inputLine;
-             String filePath = scnr.nextLine();
-             if (filePath.equals(null) || filePath.isEmpty()) { 
-             	throw new IOException(); 
-             }
-             readBuffer = new BufferedReader(new FileReader(filePath));
-             
-             readBuffer.readLine(); // Ignore header row
-             while ((inputLine = readBuffer.readLine()) != null) {
-             	CSVData.add(CSVtoArrayList(inputLine));
-             }
-             System.out.println("Reading file...Done.");
-//             for (int i = 0; i < CSVData.size(); i++) {
-//             	System.out.println(CSVData.get(i));
-//             }
-             
-         } 
-         catch (IOException e) {
-             System.out.println("This filename cannot be found.  Exiting.");
-             System.exit(0);
-         }
-         return CSVData;
+	public static <T extends Comparable<T>> void AscendSort(ArrayList<CSVRow> CSVData, int column) { //Selection Sort
+    	int smallestIndex;
+    	CSVRow temp;
+    	for (int currentIndex = 0; currentIndex < CSVData.size() - 1; currentIndex++) {
+    		smallestIndex = currentIndex;
+    		T iCompareValue = (T) CSVData.get(currentIndex).GetAllData().get(column);
+    		
+    		for (int j = currentIndex + 1; j < CSVData.size(); j++) {
+    			T jCompareValue = (T) CSVData.get(j).GetAllData().get(column);
+    			
+    			if (iCompareValue.compareTo(jCompareValue) < 0) {
+    				smallestIndex = j; //Find smaller of 2 items
+    			}
+    		}
+    		//Swap
+    		if (currentIndex != smallestIndex) {
+	    		temp = CSVData.get(currentIndex);
+	    		CSVData.set(currentIndex, CSVData.get(smallestIndex));
+	    		CSVData.set(smallestIndex, temp);
+    		}
+    	}
     }
     
-    // Utility which converts CSV to ArrayList using Split operation
-    
-    public static ArrayList<Object> CSVtoArrayList(String CSVFileName) {
-        ArrayList<Object> arrlist = new ArrayList<Object>();
-        
-        
-        if (CSVFileName != null) {
-            String[] splitData = CSVFileName.split("\\,", -1); //the -1 helps handle the null values
-            
-            for (int i = 0; i < splitData.length; i++) {
-                //if it is null, replace it with a 0
-                if (splitData[i].length() == 0) {
-                    splitData[i] = "0";
-                }
-                //as long as it is not null and the length is not 0, trim the value and add it to the arraylist
-                if (!(splitData[i] == null) || !(splitData[i].length() == 0)) {
-                	String trimmedString = splitData[i];
-                	if (i == 0) { 		// Country (String)
-                		arrlist.add(trimmedString);
-                	}
-                	if (i == 1) { 		// Year (integer)
-                		int trimmedInteger = Integer.parseInt(trimmedString);
-                		arrlist.add(trimmedInteger);
-                	}
-            		if (i == 2) { 		// Continent (String)
-            			arrlist.add(trimmedString);
-            		}
-            		if (i != 0 && i != 1 && i != 2) {				// Other (Double) -- Else not working here for unknown reason
-            			double trimmedDouble = Double.parseDouble(trimmedString);
-            			arrlist.add(trimmedDouble);
-            		}
-                }
-            }
-         }
-     return arrlist;
+    public static <T extends Comparable<T>> void DescendSort(ArrayList<CSVRow> CSVData, int column) {
+    	int smallestIndex;
+    	CSVRow temp;
+    	for (int currentIndex = 0; currentIndex < CSVData.size() - 1; currentIndex++) {
+    		smallestIndex = currentIndex;
+    		T currentCompareValue = (T) CSVData.get(currentIndex).GetAllData().get(column);
+    		
+    		for (int j = currentIndex + 1; j < CSVData.size(); j++) {
+    			T jCompareValue = (T) CSVData.get(j).GetAllData().get(column);
+    			
+    			if (currentCompareValue.compareTo(jCompareValue) > 0) {
+    				smallestIndex = j; //Find smaller of 2 items
+    			}
+    		}
+    		//Swap
+    		if (currentIndex != smallestIndex) {
+	    		temp = CSVData.get(currentIndex);
+	    		CSVData.set(currentIndex, CSVData.get(smallestIndex));
+	    		CSVData.set(smallestIndex, temp);
+    		}
+    	}
     }
     
-    public static <T extends Comparable<T>> void Sort(Character columnToSort, int ascendOrDescend) {
-    	int column = -1;
-    	if (columnToSort == 'a') { column = 0;  }
-    	if (columnToSort == 'b') { column = 1;  }
-    	if (columnToSort == 'c') { column = 2;  }
-    	if (columnToSort == 'd') { column = 3;  }
-    	if (columnToSort == 'e') { column = 4;  }
-    	if (columnToSort == 'f') { column = 5;  }
-    	if (columnToSort == 'g') { column = 6;  }
-    	if (columnToSort == 'h') { column = 7;  }
-    	if (columnToSort == 'i') { column = 8;  }
-    	if (columnToSort == 'j') { column = 9;  }
-    	if (columnToSort == 'k') { column = 10; }
-    	
-    	
+    public static void Search(ArrayList<CSVRow> CSVData, String country, String continent, Integer year) {
+    	if (!(country.isEmpty())) {
+    		for (CSVRow row : CSVData) {
+    			if (!(row.GetCountry().equals(country))) {
+    				CSVData.remove(row);
+    			}
+    		}
+    	}
+    	if (!(continent.isEmpty())) {
+    		for (CSVRow row : CSVData) {
+    			if (!(row.GetContinent().equals(continent))) {
+    				CSVData.remove(row);
+    			}
+    		}
+    	}
+    	if (year != 0 && year != null) {
+    		for (CSVRow row : CSVData) {
+    			if (!(row.GetYear().equals(year))) {
+    				CSVData.remove(row);
+    			}
+    		}
+    	}
     }
     
-    public static void PrintRows(ArrayList<ArrayList<Object>> sortedRows) {
+    
+    public static void PrintRows(ArrayList<CSVRow> sortedRows) {
     	System.out.println();
     	System.out.println("Country                 Year   Cont  Happ  GDP   Fam   Hlth  Free  Gene  Govt  CPI");
-    	for (ArrayList<Object> row : sortedRows) {
-    		System.out.printf("%-22s  %d   %s    %.2f  %.2f  %.2f  %.2f  %.2f  %.2f  %.2f  %.0f\n", row.get(0), row.get(1), row.get(2), row.get(3), row.get(4),
-    				row.get(5), row.get(6), row.get(7), row.get(8), row.get(9), row.get(10));
+    	for (CSVRow row : sortedRows) {
+    		System.out.printf("%-22s  %d   %s    %.2f  %.2f  %.2f  %.2f  %.2f  %.2f  %.2f  %.0f\n", row.GetCountry(), row.GetYear(),
+    				row.GetContinent(), row.GetHappinessScore(), row.GetGDP(), row.GetFamily(), row.GetHealth(), row.GetFreedom(),
+    				row.GetGenerosity(), row.GetGovernmentTrust(), row.GetCPIScore());
     	}
     	if (sortedRows.size() < 1) { System.out.println("No rows returned."); }
     }

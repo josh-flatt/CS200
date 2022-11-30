@@ -1,68 +1,102 @@
+import java.util.ArrayList;
+/**
+ * adopted from Crunchify.com
+ * Josh Flatt
+ * CS 200 HW Assignment 4
+ * 29 November 2022
+ */
 
 public class CSVRow {
-	public String country;
-	public Integer year;
-	public String continent;
-	public Double happinessScore;
-	public Double gdp;
-	public Double family;
-	public Double health;
-	public Double freedom;
-	public Double generosity;
-	public Double governmentTrust;
-	public Double cpiScore;
+	private String country;
+	private Integer year;
+	private String continent;
+	private Double happinessScore;
+	private Double gdp;
+	private Double family;
+	private Double health;
+	private Double freedom;
+	private Double generosity;
+	private Double governmentTrust;
+	private Double cpiScore;
 
-	
 	public CSVRow(String inputLine) {
 		try {
-			if (inputLine == null) { throw new Exception("Input line is null."); }
 			
+			if (inputLine == null) { throw new Exception("Input line is null."); }
 	        String[] splitData = inputLine.split("\\,", -1); //the -1 helps handle the null values
 	        for (int i = 0; i < splitData.length; i++) {
-	            
 	            if (splitData[i].length() == 0 || splitData == null) { //replace empty values with a "0"
 	            	splitData[i] = "0";
 	            }
-            	String trimmedString = splitData[i];
-            	Double trimmedDouble;
-            	Integer trimmedInteger;
-            	switch(i) {
-            		case 0:
-            			this.country = trimmedString;
-            		case 1:
-            			trimmedInteger = Integer.parseInt(trimmedString);
-            			this.year = trimmedInteger;
-            		case 2:
-            			this.continent = trimmedString;
-            		case 3:
-            			trimmedDouble = Double.parseDouble(trimmedString);
-            			this.happinessScore = trimmedDouble;
-            		case 4:
-            			trimmedDouble = Double.parseDouble(trimmedString);
-            			this.gdp = trimmedDouble;
-            		case 5:
-            			trimmedDouble = Double.parseDouble(trimmedString);
-            			this.family = trimmedDouble;
-            		case 6:
-            			trimmedDouble = Double.parseDouble(trimmedString);
-            			this.health = trimmedDouble;
-            		case 7:
-            			trimmedDouble = Double.parseDouble(trimmedString);
-            			this.freedom = trimmedDouble;
-            		case 8:
-            			trimmedDouble = Double.parseDouble(trimmedString);
-            			this.generosity = trimmedDouble;
-            		case 9:
-            			trimmedDouble = Double.parseDouble(trimmedString);
-            			this.happinessScore = trimmedDouble;
-            		case 10:
-            			trimmedDouble = Double.parseDouble(trimmedString);
-            			this.happinessScore = trimmedDouble;
-            	}
 	        }
+	        
+	        this.country = splitData[0];
+	        this.year = Integer.parseInt(splitData[1]);
+	        this.continent = splitData[2];
+	        this.happinessScore = Double.parseDouble(splitData[3]);
+	        this.gdp = Double.parseDouble(splitData[4]);
+	        this.family = Double.parseDouble(splitData[5]);
+	        this.health = Double.parseDouble(splitData[6]);
+	        this.freedom = Double.parseDouble(splitData[7]);
+	        this.generosity = Double.parseDouble(splitData[8]);
+	        this.governmentTrust = Double.parseDouble(splitData[9]);
+	        this.cpiScore = Double.parseDouble(splitData[10]);
+	        
         } catch (Exception e) {
         	System.out.println("An error has occured.");
         	System.out.println(e.getMessage());
+        	e.printStackTrace();
         }
 	}
+
+	//Getters
+	public String GetCountry() {
+		return this.country;
+	}
+	public Integer GetYear() {
+		return this.year;
+	}
+	public String GetContinent() {
+		return this.continent;
+	}
+	public Double GetHappinessScore() {
+		return this.happinessScore;
+	}
+	public Double GetGDP() {
+		return this.gdp;	
+	}
+	public Double GetFamily() {
+		return this.family;	
+	}
+	public Double GetHealth() {
+		return this.health;	
+	}
+	public Double GetFreedom() {
+		return this.freedom;	
+	}
+	public Double GetGenerosity() {
+		return this.generosity;	
+	}
+	public Double GetGovernmentTrust() {
+		return this.governmentTrust;	
+	}
+	public Double GetCPIScore() {
+		return this.cpiScore;	
+	}
+	public ArrayList<Object> GetAllData() {
+		ArrayList<Object> allData = new ArrayList<Object>();
+		allData.add(this.country);
+		allData.add(this.year);
+		allData.add(this.continent);
+		allData.add(this.happinessScore);
+		allData.add(this.gdp);
+		allData.add(this.family);
+		allData.add(this.health);
+		allData.add(this.freedom);
+		allData.add(this.generosity);
+		allData.add(this.governmentTrust);
+		allData.add(this.cpiScore);
+		return allData;
+	}
+	//No Setters - information is not to be modified
 }
