@@ -7,12 +7,11 @@ package advisorQueue;
  * @author joshm
  *
  */
-public class Person {
+public abstract class Person {
 
 	private String firstName;
 	private String lastName;
 	private String email;
-	
 	
 	public Person(String firstName, String lastName, String email) {
 		this.firstName = firstName;
