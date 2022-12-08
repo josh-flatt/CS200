@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=FlyDriveFrame
+comment1.params=
+comment1.target=FlyDriveFrame()
+comment1.text=\ Constructor\ creates\ GUI\ components\ and\ adds\ GUI\ components\r\nusing\ a\ GridBagLayout.
+comment2.params=event
+comment2.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment2.text=\ Method\ is\ automatically\ called\ when\ an\ event\ \r\noccurs\ (e.g,\ Enter\ key\ is\ pressed)
+comment3.params=args
+comment3.target=void\ main(java.lang.String[])
+comment3.text=Creates\ a\ FlyDriveFrame\ and\ makes\ it\ visible
+numComments=4

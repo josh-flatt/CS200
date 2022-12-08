@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=FileReadFrame
+comment1.params=
+comment1.target=FileReadFrame()
+comment1.text=\ Constructor\ creates\ GUI\ components\ and\ adds\ GUI\ components\r\nusing\ a\ GridBagLayout.
+comment2.params=event
+comment2.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment2.text=Called\ when\ openFileButton\ is\ pressed.
+comment3.params=args
+comment3.target=void\ main(java.lang.String[])
+comment3.text=Creates\ a\ FileReadFrame\ and\ makes\ it\ visible
+numComments=4

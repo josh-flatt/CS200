@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=HeightConverterFrame
+comment1.params=
+comment1.target=HeightConverterFrame()
+comment1.text=\ Constructor\ creates\ GUI\ components\ and\ adds\ GUI\ components\r\nusing\ a\ GridBagLayout.
+comment2.params=ft\ in
+comment2.target=double\ HeightFtInToCm(int,\ int)
+comment2.text=Converts\ a\ height\ in\ feet/inches\ to\ centimeters.
+comment3.params=event
+comment3.target=void\ stateChanged(javax.swing.event.ChangeEvent)
+comment3.text=\ Called\ as\ slider\ value\ changes.\ Updates\ fields\ to\ display\r\nthe\ numerical\ representation\ of\ the\ slider\ settings.
+comment4.params=event
+comment4.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment4.text=Called\ when\ button\ is\ pressed.\ Converts\ height\ to\ cm.
+comment5.params=args
+comment5.target=void\ main(java.lang.String[])
+comment5.text=Creates\ a\ HeightConverterFrame\ and\ makes\ it\ visible
+numComments=6
