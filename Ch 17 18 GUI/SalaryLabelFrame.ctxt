@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=SalaryLabelFrame
+comment1.params=
+comment1.target=SalaryLabelFrame()
+comment1.text=\ Constructor\ initializes\ the\ SalaryLabelFrame,\ \r\n\ \ \ \ \ \ creates\ GUI\ components,\ and\ adds\ them\r\nusing\ a\ GridBagLayout.
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+comment2.text=Creates\ a\ SalarLabelFrame\ and\ makes\ it\ visible
+numComments=3
