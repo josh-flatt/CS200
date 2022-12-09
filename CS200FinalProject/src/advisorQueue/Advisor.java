@@ -1,7 +1,7 @@
 /**
  * 
  */
-package advisorQueue;
+package src.advisorQueue;
 
 /**
  * @author joshm
