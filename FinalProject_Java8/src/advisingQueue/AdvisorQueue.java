@@ -35,15 +35,18 @@ public class AdvisorQueue {
 	public Student peekNextStudent() {
 		return studentQueue.peek();
 	}
+	public Integer getQueueCount() {
+		return studentQueue.size();
+	}
 	
 	// Meeting actions
 	public boolean startMeeting() {
 		try {
 			Student student = studentQueue.peek();
-			if (student.equals(null)) {
+			if (student == null) {
 				throw new Exception("There are no students in the Queue!");
 			}
-			if (!this.currentMeeting.equals(null)) {
+			if (this.currentMeeting != null) {
 				throw new Exception("There is already a meeting in progress!");
 			}
 			this.currentMeeting = new Meeting(student, this.advisor);
