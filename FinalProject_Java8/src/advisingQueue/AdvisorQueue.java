@@ -1,7 +1,7 @@
 /**
  * 
  */
-package advisingQueue;
+package src.advisingQueue;
 
 import java.util.LinkedList;
 import java.util.ArrayList;

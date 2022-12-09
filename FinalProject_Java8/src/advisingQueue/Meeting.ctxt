@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Meeting
+comment0.text=\r\n\ @author\ joshm\r\n\r\n
+comment1.params=student\ advisor
+comment1.target=Meeting(advisingQueue.Student,\ advisingQueue.Advisor)
+comment2.params=note
+comment2.target=void\ addNote(java.lang.String)
+comment3.params=
+comment3.target=advisingQueue.Student\ getStudent()
+comment4.params=
+comment4.target=advisingQueue.Advisor\ getAdvisor()
+comment5.params=
+comment5.target=java.util.ArrayList\ getNotes()
+comment6.params=
+comment6.target=java.time.LocalDateTime\ getStartDateTime()
+comment7.params=
+comment7.target=java.time.LocalDateTime\ getEndDateTime()
+comment8.params=
+comment8.target=java.time.Duration\ getDuration()
+comment9.params=
+comment9.target=boolean\ endMeeting()
+numComments=10
