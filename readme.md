@@ -27,4 +27,4 @@
 - JavaFX included
 - Best suited for JavaPOS
 - JavaPOS version (####)?
-- Will it work in blueJ?
+- Will it work in blueJ? Nope! :(
