@@ -45,7 +45,7 @@ public class Meeting {
 		return this.startDateTime;
 	}
 	public LocalDateTime getEndDateTime() {
-		if (!isActive) { return this.endDateTime; }
+//		if (!isActive) { return this.endDateTime; }
 		return null;
 	}
 	public Duration getDuration() {
