@@ -5,7 +5,7 @@
 - JavaFX 11.0.13.1_1
 - Java 11.0.14.1
 
-## JavaPOS
+## JavaPOS - Best suited in Java 8 environment
 ### Oracle
 - Java 7 SE JRE / JDK
 - Java 8 SE JRE / JDK
@@ -21,3 +21,10 @@
 
 # Current final project configuration
 - JRE System Library [JavaSE-18]
+
+# Current final project plan usage
+- Java 8 JDK
+- JavaFX included
+- Best suited for JavaPOS
+- JavaPOS version (####)?
+- Will it work in blueJ?
