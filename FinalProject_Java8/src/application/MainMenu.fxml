@@ -18,7 +18,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="button" layoutX="248.0" layoutY="419.0" mnemonicParsing="false" onAction="#onStudentSubmitButtonClicked" text="Get in Line!">
+                        <Button fx:id="studentSubmitButton" layoutX="248.0" layoutY="412.0" mnemonicParsing="false" onAction="#onStudentSubmitButtonClicked" text="Get in Line!">
                            <font>
                               <Font size="48.0" />
                            </font>
@@ -53,13 +53,40 @@
                               <Font size="36.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="studentAdvisorSelection" editable="true" layoutX="248.0" layoutY="329.0" onAction="#initialize" prefHeight="77.0" prefWidth="446.0" />
+                        <ComboBox fx:id="studentAdvisorSelection" editable="true" layoutX="248.0" layoutY="350.0" prefHeight="32.0" prefWidth="230.0" promptText="Select an Advisor" />
+                        <Label layoutX="72.0" layoutY="339.0" text="Advisor:">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
                      </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="Adv CJ">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="advCJStartMeetingButton" layoutX="497.0" layoutY="51.0" mnemonicParsing="false" onAction="#onAdvCJStartMeetingButtonClicked" prefHeight="200.0" prefWidth="200.0" text="Start new meeting" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="advCJEndMeetingButton" layoutX="497.0" layoutY="259.0" mnemonicParsing="false" onAction="#onAdvCJEndMeetingButtonClicked" prefHeight="200.0" prefWidth="200.0" text="End meeting" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="advCJQueueCtLabel" layoutX="53.0" layoutY="80.0" prefHeight="58.0" prefWidth="260.0" text="Students in Queue: ">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="advCJRefreshButton" layoutX="87.0" layoutY="151.0" mnemonicParsing="false" onAction="#onAdvCJRefreshButtonClicked" text="Refresh">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="Adv Brendan">
