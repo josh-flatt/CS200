@@ -23,7 +23,7 @@
 - JRE System Library [JavaSE-18]
 
 # Current final project plan usage
-- Java 8 JDK
+- Oracle Java 8 JDK (jdk-8u341)
 - JavaFX included
 - Best suited for JavaPOS
 - JavaPOS version (####)?
