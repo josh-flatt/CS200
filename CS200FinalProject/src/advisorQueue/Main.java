@@ -1,4 +1,4 @@
-package advisorQueue;
+package src.advisorQueue;
 import java.util.ArrayList;
 
 public class Main {

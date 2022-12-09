@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=AdvisorQueue
+comment0.text=\r\n\ @author\ joshm\r\n\r\n
+comment1.params=meetings\ advisor
+comment1.target=AdvisorQueue(java.util.ArrayList,\ advisorQueue.Advisor)
+comment2.params=student
+comment2.target=void\ addStudent(advisorQueue.Student)
+comment3.params=student
+comment3.target=void\ removeStudent(advisorQueue.Student)
+comment4.params=
+comment4.target=advisorQueue.Student\ peekNextStudent()
+comment5.params=
+comment5.target=boolean\ startMeeting()
+comment6.params=
+comment6.target=boolean\ endMeeting()
+numComments=7
