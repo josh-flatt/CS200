@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -58,26 +60,38 @@ public class MainMenuController {
 	private ComboBox<String> studentAdvisorSelection;
 	@FXML
 	protected void onStudentSubmitButtonClicked(ActionEvent event) {
-		String firstName = this.studentFirstName.getText();
-		String lastName = this.studentLastName.getText();
-		String email = this.studentEmail.getText();
-		String advisor = this.studentAdvisorSelection.getValue();
-		
-		Student student = new Student(firstName, lastName, email);
-		if (advisor.equals("CJ")) {
-			cjAQ.addStudent(student);
-		}
-		if (advisor.equals("Brendan")) {
-			brendanAQ.addStudent(student);	
-		}
-		if (advisor.equals("Alan")) {
-			alanAQ.addStudent(student);
-		}
-		if (advisor.equals("Ryan")) {
-			ryanAQ.addStudent(student);
-		}
-		else {
-			System.out.println("No advisor selected!!!");
+		try {
+			boolean validAdvisor = false;
+			String firstName = this.studentFirstName.getText();
+			String lastName = this.studentLastName.getText();
+			String email = this.studentEmail.getText();
+			String advisor = this.studentAdvisorSelection.getValue();
+			
+			Student student = new Student(firstName, lastName, email);
+			if (advisor.equals("CJ")) {
+				cjAQ.addStudent(student);
+				validAdvisor = true;
+			}
+			if (advisor.equals("Brendan")) {
+				brendanAQ.addStudent(student);	
+				validAdvisor = true;
+			}
+			if (advisor.equals("Alan")) {
+				alanAQ.addStudent(student);
+				validAdvisor = true;
+			}
+			if (advisor.equals("Ryan")) {
+				ryanAQ.addStudent(student);
+				validAdvisor = true;
+			}
+			else if (!validAdvisor) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("title");
+			alert.setContentText("Error message");
+			alert.showAndWait();
 		}
 	}
 	
@@ -92,12 +106,34 @@ public class MainMenuController {
 	private Label advCJQueueCtLabel;
 	@FXML
 	protected void onAdvCJRefreshButtonClicked(ActionEvent event) {
-		advCJQueueCtLabel.setText("Students in queue: " + cjAQ.getQueueCount());
+		advCJQueueCtLabel.setText("Students in Queue: " + cjAQ.getQueueCount());
 	}
 	@FXML
 	protected void onAdvCJStartMeetingButtonClicked(ActionEvent event) {
 		System.out.println("Starting meeting...");
-		cjAQ.startMeeting();
+		String meetingMessage = cjAQ.startMeeting();
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		if (meetingMessage.equals("No_students_in_queue")) {
+			alert.setTitle("Notification");
+			alert.setContentText("There are no students in the queue.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Meeting_in_progress")) {
+			alert.setTitle("Notification");
+			alert.setContentText("There is a meeting already in progress.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Success")) {
+			alert.setTitle("Notification");
+			alert.setContentText("Meeting started");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Unexpected_error")) {
+			alert.setAlertType(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setContentText("Unexpected error :(");
+			alert.showAndWait();
+		}
 	}
 	@FXML
 	protected void onAdvCJEndMeetingButtonClicked(ActionEvent event) {
@@ -116,12 +152,33 @@ public class MainMenuController {
 	private Label advBrendanQueueCtLabel;
 	@FXML
 	protected void onAdvBrendanRefreshButtonClicked(ActionEvent event) {
-		advBrendanQueueCtLabel.setText("Students in queue: " + brendanAQ.getQueueCount());
+		advBrendanQueueCtLabel.setText("Students in Queue: " + brendanAQ.getQueueCount());
 	}
 	@FXML
 	protected void onAdvBrendanStartMeetingButtonClicked(ActionEvent event) {
-		System.out.println("Starting meeting...");
-		brendanAQ.startMeeting();
+		String meetingMessage = brendanAQ.startMeeting();
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		if (meetingMessage.equals("No_students_in_queue")) {
+			alert.setTitle("Notification");
+			alert.setContentText("There are no students in the queue.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Meeting_in_progress")) {
+			alert.setTitle("Notification");
+			alert.setContentText("There is a meeting already in progress.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Success")) {
+			alert.setTitle("Notification");
+			alert.setContentText("Meeting started");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Unexpected_error")) {
+			alert.setAlertType(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setContentText("Unexpected error :(");
+			alert.showAndWait();
+		}
 	}
 	@FXML
 	protected void onAdvBrendanEndMeetingButtonClicked(ActionEvent event) {
@@ -140,12 +197,33 @@ public class MainMenuController {
 	private Label advAlanQueueCtLabel;
 	@FXML
 	protected void onAdvAlanRefreshButtonClicked(ActionEvent event) {
-		advAlanQueueCtLabel.setText("Students in queue: " + alanAQ.getQueueCount());
+		advAlanQueueCtLabel.setText("Students in Queue: " + alanAQ.getQueueCount());
 	}
 	@FXML
 	protected void onAdvAlanStartMeetingButtonClicked(ActionEvent event) {
-		System.out.println("Starting meeting...");
-		alanAQ.startMeeting();
+		String meetingMessage = alanAQ.startMeeting();
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		if (meetingMessage.equals("No_students_in_queue")) {
+			alert.setTitle("Notification");
+			alert.setContentText("There are no students in the queue.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Meeting_in_progress")) {
+			alert.setTitle("Notification");
+			alert.setContentText("There is a meeting already in progress.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Success")) {
+			alert.setTitle("Notification");
+			alert.setContentText("Meeting started");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Unexpected_error")) {
+			alert.setAlertType(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setContentText("Unexpected error :(");
+			alert.showAndWait();
+		}
 	}
 	@FXML
 	protected void onAdvAlanEndMeetingButtonClicked(ActionEvent event) {
@@ -164,12 +242,33 @@ public class MainMenuController {
 	private Label advRyanQueueCtLabel;
 	@FXML
 	protected void onAdvRyanRefreshButtonClicked(ActionEvent event) {
-		advRyanQueueCtLabel.setText("Students in queue: " + ryanAQ.getQueueCount());
+		advRyanQueueCtLabel.setText("Students in Queue: " + ryanAQ.getQueueCount());
 	}
 	@FXML
 	protected void onAdvRyanStartMeetingButtonClicked(ActionEvent event) {
-		System.out.println("Starting meeting...");
-		ryanAQ.startMeeting();
+		String meetingMessage = ryanAQ.startMeeting();
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		if (meetingMessage.equals("No_students_in_queue")) {
+			alert.setTitle("Notification");
+			alert.setContentText("There are no students in the queue.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Meeting_in_progress")) {
+			alert.setTitle("Notification");
+			alert.setContentText("There is a meeting already in progress.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Success")) {
+			alert.setTitle("Notification");
+			alert.setContentText("Meeting started");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Unexpected_error")) {
+			alert.setAlertType(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setContentText("Unexpected error :(");
+			alert.showAndWait();
+		}
 	}
 	@FXML
 	protected void onAdvRyanEndMeetingButtonClicked(ActionEvent event) {
