@@ -25,13 +25,25 @@ import advisingQueue.*;
  */
 public class MainMenuController {
 	
-	private AdvisorQueue advQA;
-	private AdvisorQueue advQB;
-	private AdvisorQueue advQC;
-	private AdvisorQueue advQD;
+	private AdvisorQueueSystem advisingQueueSystem = new AdvisorQueueSystem();;
+	private AdvisorQueue cjAQ = advisingQueueSystem
+					.CreateAdvisorQueueA(new Advisor("CJ", "Cron", "firstBaseman@rockies.com"));
+	private AdvisorQueue brendanAQ = advisingQueueSystem
+					.CreateAdvisorQueueB(new Advisor("Brendan", "Rodgers", "secondBaseman@rockies.com"));
+	private AdvisorQueue alanAQ = advisingQueueSystem
+			.CreateAdvisorQueueC(new Advisor("Alan", "Trejo", "shortstop@rockies.com"));
+	private AdvisorQueue ryanAQ = advisingQueueSystem
+			.CreateAdvisorQueueD(new Advisor("Ryan", "McMahon", "thirdBaseman@rockies.com"));
 	
 	ObservableList<String> advisorList = FXCollections
-			.observableArrayList("A", "B", "C", "D");
+			.observableArrayList("CJ", "Brendan", "Alan", "Ryan");
+	
+	// Initialize
+	@FXML
+	public void initialize() {
+		System.out.println("Initializing!!!");
+		studentAdvisorSelection.setItems(advisorList);
+	}
 	
 	//Student Page
 	@FXML
@@ -49,13 +61,25 @@ public class MainMenuController {
 		String firstName = this.studentFirstName.getText();
 		String lastName = this.studentLastName.getText();
 		String email = this.studentEmail.getText();
+		String advisor = this.studentAdvisorSelection.getValue();
 		
-		Student student1 = new Student(firstName, lastName, email);
-		studentEmail.setText(student1.getFullName());
+		Student student = new Student(firstName, lastName, email);
+		if (advisor.equals("CJ")) {
+			cjAQ.addStudent(student);
+		}
+		if (advisor.equals("Brendan")) {
+			brendanAQ.addStudent(student);	
+		}
+		if (advisor.equals("Alan")) {
+			alanAQ.addStudent(student);
+		}
+		if (advisor.equals("Ryan")) {
+			ryanAQ.addStudent(student);
+		}
+		else {
+			System.out.println("No advisor selected!!!");
+		}
 	}
-	
-	
-	
 	
 	//Advisor CJ
 	@FXML
@@ -68,23 +92,88 @@ public class MainMenuController {
 	private Label advCJQueueCtLabel;
 	@FXML
 	protected void onAdvCJRefreshButtonClicked(ActionEvent event) {
-		
+		advCJQueueCtLabel.setText("Students in queue: " + cjAQ.getQueueCount());
 	}
 	@FXML
 	protected void onAdvCJStartMeetingButtonClicked(ActionEvent event) {
-		
+		System.out.println("Starting meeting...");
+		cjAQ.startMeeting();
 	}
 	@FXML
 	protected void onAdvCJEndMeetingButtonClicked(ActionEvent event) {
-		
+		System.out.println("Meeting ending...");
+		cjAQ.endMeeting();
 	}
-	
-	
+
+	//Advisor Brendan
 	@FXML
-	public void initialize() {
-		studentAdvisorSelection.setItems(advisorList);
+	private Button advBrendanStartMeetingButton;
+	@FXML
+	private Button advBrendanEndMeetingButton;
+	@FXML
+	private Button advBrendanRefreshButton;
+	@FXML
+	private Label advBrendanQueueCtLabel;
+	@FXML
+	protected void onAdvBrendanRefreshButtonClicked(ActionEvent event) {
+		advBrendanQueueCtLabel.setText("Students in queue: " + brendanAQ.getQueueCount());
+	}
+	@FXML
+	protected void onAdvBrendanStartMeetingButtonClicked(ActionEvent event) {
+		System.out.println("Starting meeting...");
+		brendanAQ.startMeeting();
+	}
+	@FXML
+	protected void onAdvBrendanEndMeetingButtonClicked(ActionEvent event) {
+		System.out.println("Meeting ending...");
+		brendanAQ.endMeeting();
 	}
 	
+	//Advisor Alan
+	@FXML
+	private Button advAlanStartMeetingButton;
+	@FXML
+	private Button advAlanEndMeetingButton;
+	@FXML
+	private Button advAlanRefreshButton;
+	@FXML
+	private Label advAlanQueueCtLabel;
+	@FXML
+	protected void onAdvAlanRefreshButtonClicked(ActionEvent event) {
+		advAlanQueueCtLabel.setText("Students in queue: " + alanAQ.getQueueCount());
+	}
+	@FXML
+	protected void onAdvAlanStartMeetingButtonClicked(ActionEvent event) {
+		System.out.println("Starting meeting...");
+		alanAQ.startMeeting();
+	}
+	@FXML
+	protected void onAdvAlanEndMeetingButtonClicked(ActionEvent event) {
+		System.out.println("Meeting ending...");
+		alanAQ.endMeeting();
+	}
 	
-	
+	//Advisor Ryan
+	@FXML
+	private Button advRyanStartMeetingButton;
+	@FXML
+	private Button advRyanEndMeetingButton;
+	@FXML
+	private Button advRyanRefreshButton;
+	@FXML
+	private Label advRyanQueueCtLabel;
+	@FXML
+	protected void onAdvRyanRefreshButtonClicked(ActionEvent event) {
+		advRyanQueueCtLabel.setText("Students in queue: " + ryanAQ.getQueueCount());
+	}
+	@FXML
+	protected void onAdvRyanStartMeetingButtonClicked(ActionEvent event) {
+		System.out.println("Starting meeting...");
+		ryanAQ.startMeeting();
+	}
+	@FXML
+	protected void onAdvRyanEndMeetingButtonClicked(ActionEvent event) {
+		System.out.println("Meeting ending...");
+		ryanAQ.endMeeting();
+	}
 }
