@@ -54,4 +54,8 @@ public class AdvisorQueueSystem {
 		this.advisorQueueD = new AdvisorQueue(students, meetings, advisor);
 		return this.advisorQueueD;
 	}
+
+	public void exportData(String exportType) {
+		
+	}
 }

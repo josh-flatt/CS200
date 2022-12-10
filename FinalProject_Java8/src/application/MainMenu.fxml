@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -19,12 +21,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="studentSubmitButton" layoutX="248.0" layoutY="412.0" mnemonicParsing="false" onAction="#onStudentSubmitButtonClicked" text="Get in Line!">
-                           <font>
-                              <Font size="48.0" />
-                           </font>
-                        </Button>
-                        <TextField fx:id="studentEmail" layoutX="248.0" layoutY="240.0" promptText="you@example.com">
+                     	<TextField fx:id="studentFirstName" layoutX="248.0" layoutY="42.0" promptText="ex: John">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -34,11 +31,17 @@
                               <Font size="36.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="studentFirstName" layoutX="248.0" layoutY="42.0" promptText="ex: John">
+                        <TextField fx:id="studentEmail" layoutX="248.0" layoutY="240.0" promptText="you@example.com">
                            <font>
                               <Font size="36.0" />
                            </font>
                         </TextField>
+                        <ComboBox fx:id="studentAdvisorSelection" editable="true" layoutX="248.0" layoutY="335.0" prefHeight="57.0" prefWidth="230.0" promptText="Select an Advisor" />
+                        <Button fx:id="studentSubmitButton" layoutX="248.0" layoutY="412.0" mnemonicParsing="false" onAction="#onStudentSubmitButtonClicked" text="Get in Line!">
+                           <font>
+                              <Font size="48.0" />
+                           </font>
+                        </Button>
                         <Label layoutX="42.0" layoutY="54.0" text="First Name:">
                            <font>
                               <Font size="36.0" />
@@ -54,7 +57,6 @@
                               <Font size="36.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="studentAdvisorSelection" editable="true" layoutX="248.0" layoutY="350.0" prefHeight="32.0" prefWidth="230.0" promptText="Select an Advisor" />
                         <Label layoutX="72.0" layoutY="339.0" text="Advisor:">
                            <font>
                               <Font size="36.0" />
@@ -87,39 +89,39 @@
                               <Font size="24.0" />
                            </font>
                         </Button>
-                        <Pane layoutX="53.0" layoutY="251.0" prefHeight="250.0" prefWidth="300.0" style="-fx-border-width: 1; -fx-border-color: black;">
+                        <Pane layoutX="53.0" layoutY="251.0" prefHeight="250.0" prefWidth="400.0" style="-fx-border-width: 1; -fx-border-color: black;">
                            <children>
                               <Label layoutX="14.0" layoutY="7.0" text="Current Meeting:" underline="true">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="27.0" layoutY="54.0" text="Student:" underline="true">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="26.0" layoutY="103.0" text="Advisor: " underline="true">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="14.0" layoutY="159.0" text="Start time: " underline="true">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="advCJMeetingStudentLabel" layoutX="128.0" layoutY="58.0" prefHeight="20.0" prefWidth="155.0">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="advCJMeetingAdvLabel" layoutX="128.0" layoutY="107.0" prefHeight="20.0" prefWidth="160.0">
+                              <Label layoutX="37.0" layoutY="60.0" text="Student:" underline="true">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="advCJMeetingTimeLabel" layoutX="136.0" layoutY="163.0" prefHeight="27.0" prefWidth="154.0">
+                              <Label layoutX="14.0" layoutY="110.0" text="Student email:" underline="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="34.0" layoutY="160.0" text="Duration:" underline="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="advCJMeetingStudentLabel" layoutX="147.0" layoutY="58.0" prefHeight="27.0" prefWidth="235.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="advCJMeetingStudentEmailLabel" layoutX="145.0" layoutY="108.0" prefHeight="20.0" prefWidth="241.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="advCJMeetingTimeLabel" layoutX="148.0" layoutY="163.0" prefHeight="27.0" prefWidth="237.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -153,6 +155,45 @@
                               <Font size="24.0" />
                            </font>
                         </Button>
+                        <Pane layoutX="53.0" layoutY="251.0" prefHeight="250.0" prefWidth="400.0" style="-fx-border-width: 1; -fx-border-color: black;">
+                           <children>
+                              <Label layoutX="14.0" layoutY="7.0" text="Current Meeting:" underline="true">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="37.0" layoutY="60.0" text="Student:" underline="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="110.0" text="Student email:" underline="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="34.0" layoutY="160.0" text="Duration:" underline="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="advBrendanMeetingStudentLabel" layoutX="147.0" layoutY="58.0" prefHeight="27.0" prefWidth="235.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="advBrendanMeetingStudentEmailLabel" layoutX="145.0" layoutY="108.0" prefHeight="20.0" prefWidth="241.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="advBrendanMeetingTimeLabel" layoutX="148.0" layoutY="163.0" prefHeight="27.0" prefWidth="237.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -180,6 +221,45 @@
                               <Font size="24.0" />
                            </font>
                         </Button>
+                        <Pane layoutX="53.0" layoutY="251.0" prefHeight="250.0" prefWidth="400.0" style="-fx-border-width: 1; -fx-border-color: black;">
+                           <children>
+                              <Label layoutX="14.0" layoutY="7.0" text="Current Meeting:" underline="true">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="37.0" layoutY="60.0" text="Student:" underline="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="110.0" text="Student email:" underline="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="34.0" layoutY="160.0" text="Duration:" underline="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="advAlanMeetingStudentLabel" layoutX="147.0" layoutY="58.0" prefHeight="27.0" prefWidth="235.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="advAlanMeetingStudentEmailLabel" layoutX="145.0" layoutY="108.0" prefHeight="20.0" prefWidth="241.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="advAlanMeetingTimeLabel" layoutX="148.0" layoutY="163.0" prefHeight="27.0" prefWidth="237.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -207,12 +287,74 @@
                               <Font size="24.0" />
                            </font>
                         </Button>
+                        <Pane layoutX="53.0" layoutY="251.0" prefHeight="250.0" prefWidth="400.0" style="-fx-border-width: 1; -fx-border-color: black;">
+                           <children>
+                              <Label layoutX="14.0" layoutY="7.0" text="Current Meeting:" underline="true">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="37.0" layoutY="60.0" text="Student:" underline="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="110.0" text="Student email:" underline="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="34.0" layoutY="160.0" text="Duration:" underline="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="advRyanMeetingStudentLabel" layoutX="147.0" layoutY="58.0" prefHeight="27.0" prefWidth="235.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="advRyanMeetingStudentEmailLabel" layoutX="145.0" layoutY="108.0" prefHeight="20.0" prefWidth="241.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="advRyanMeetingTimeLabel" layoutX="148.0" layoutY="163.0" prefHeight="27.0" prefWidth="237.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab text="Collect Data">
+          <Tab text="Meetings">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableView" layoutX="19.0" layoutY="78.0" prefHeight="400.0" prefWidth="762.0">
+                          <columns>
+                            <TableColumn fx:id="meetingIDColumn" prefWidth="63.0" text="Meeting #" />
+                            <TableColumn fx:id="studentNameColumn" prefWidth="146.0" text="Student" />
+                              <TableColumn fx:id="studentEmailColumn" prefWidth="119.0" text="Student email" />
+                              <TableColumn fx:id="advisorFirstNameColumn" prefWidth="102.0" text="Advisor" />
+                              <TableColumn fx:id="meetingStartColumn" prefWidth="126.0" text="Start time" />
+                              <TableColumn fx:id="meetingEndColumn" prefWidth="118.0" text="End time" />
+                              <TableColumn fx:id="meetingDurationColumn" minWidth="0.0" prefWidth="86.0" text="Duration" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="321.0" layoutY="14.0" text="Meetings" underline="true">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="meetingsRefreshButton" layoutX="675.0" layoutY="14.0" mnemonicParsing="false" onAction="#onMeetingsRefreshButtonClicked" prefHeight="38.0" prefWidth="106.0" text="Refresh Data">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>

@@ -11,6 +11,10 @@ import java.time.Duration;
  *
  */
 public class Meeting {
+	
+	static Integer meetingcount = 0;
+	
+	private Integer ID;
 	private Student student;
 	private Advisor advisor;
 	private Boolean isActive;
@@ -18,9 +22,19 @@ public class Meeting {
 	private LocalDateTime endDateTime;
 	private ArrayList<String> notes;
 	
+	private String tableStudentFullName;
+	private String tableStudentEmail;
+	private String tableAdvisorFirstName;
+	private String tableDuration;
+	
 	public Meeting(Student student, Advisor advisor) {
+		meetingcount++;
+		this.ID = meetingcount;
 		this.student = student;
+		this.tableStudentFullName = student.getFullName();
+		this.tableStudentEmail = student.getEmail();
 		this.advisor = advisor;
+		this.tableAdvisorFirstName = advisor.getFirstName();
 		this.isActive = true;
 		this.notes = new ArrayList<>();
 		this.startDateTime = LocalDateTime.now();
@@ -32,6 +46,9 @@ public class Meeting {
 	}
 	
 	// Getters
+	public Integer getID() {
+		return this.ID;
+	}
 	public Student getStudent() {
 		return this.student;
 	}
@@ -45,12 +62,26 @@ public class Meeting {
 		return this.startDateTime;
 	}
 	public LocalDateTime getEndDateTime() {
-//		if (!isActive) { return this.endDateTime; }
-		return null;
+		return this.endDateTime;
 	}
 	public Duration getDuration() {
-		if (isActive) { return null; }
+		if (isActive) { return Duration.between(startDateTime, LocalDateTime.now()); }
 		return Duration.between(startDateTime, endDateTime);
+	}
+	public String getTableStudentFullName() {
+		return this.tableStudentFullName;
+	}
+	public String getTableStudentEmail() {
+		return this.tableStudentEmail;
+	}
+	public String getTableAdvisorFirstName() {
+		return this.tableAdvisorFirstName;
+	}
+	public String getTableDuration() {
+		long minutes = this.getDuration().toMinutes();
+		long seconds = this.getDuration().getSeconds() % 60;
+		this.tableDuration = minutes +"m "+ seconds +"s";
+		return this.tableDuration;
 	}
 
 	// End meeting
