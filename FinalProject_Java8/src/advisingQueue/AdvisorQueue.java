@@ -69,14 +69,17 @@ public class AdvisorQueue {
 	public Meeting getCurrentMeeting() {
 		return this.currentMeeting;
 	}
-	public boolean endMeeting() {
+	public String endMeeting() {
+		if (currentMeeting == null) {
+			return "No_current_meeting";
+		}
 		Meeting meeting = currentMeeting;
 		boolean success = meeting.endMeeting();
 		if (success) {
 			this.currentMeeting = null;
 			meetings.add(meeting);
-			return true;
+			return "Success";
 		}
-		return false;
+		return "Unexpected_error";
 	}
 }
