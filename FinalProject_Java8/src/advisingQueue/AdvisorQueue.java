@@ -41,30 +41,33 @@ public class AdvisorQueue {
 	public Student peekNextStudent() {
 		return studentQueue.peek();
 	}
-	public int getQueueCount() {
+	public Integer getQueueCount() {
 		System.out.println("Queue: "+ studentQueue);
 		System.out.println("Queue count size: "+ studentQueue.size());
 		return studentQueue.size();
 	}
 	
 	// Meeting actions
-	public boolean startMeeting() {
+	public String startMeeting() {
 		try {
 			Student student = studentQueue.peek();
 			if (student == null) {
-				throw new Exception("There are no students in the Queue!");
+				return "No_students_in_queue";
 			}
 			if (this.currentMeeting != null) {
-				throw new Exception("There is already a meeting in progress!");
+				return "Meeting_in_progress";
 			}
 			this.currentMeeting = new Meeting(student, this.advisor);
 			studentQueue.poll();
-			return true;
+			return "Success";
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
-			return false;
+			return "Unexpected_error";
 		}
+	}
+	public Meeting getCurrentMeeting() {
+		return this.currentMeeting;
 	}
 	public boolean endMeeting() {
 		Meeting meeting = currentMeeting;
