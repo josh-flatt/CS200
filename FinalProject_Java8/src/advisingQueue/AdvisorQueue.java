@@ -29,11 +29,9 @@ public class AdvisorQueue {
 	
 	// Queue actions
 	public void addStudent(Student student) {
-		System.out.println("Student added");
-		System.out.println("To queue: "+studentQueue.add(student));
-		System.out.println("To students: "+students.add(student));
-		System.out.println("Queue count size: "+ studentQueue.size());
-		System.out.println("Queue: "+ studentQueue);
+		studentQueue.add(student);
+		students.add(student);
+
 	}
 	public void removeStudent(Student student) {
 		studentQueue.remove(student);
@@ -42,8 +40,6 @@ public class AdvisorQueue {
 		return studentQueue.peek();
 	}
 	public Integer getQueueCount() {
-		System.out.println("Queue: "+ studentQueue);
-		System.out.println("Queue count size: "+ studentQueue.size());
 		return studentQueue.size();
 	}
 	
@@ -58,6 +54,7 @@ public class AdvisorQueue {
 				return "Meeting_in_progress";
 			}
 			this.currentMeeting = new Meeting(student, this.advisor);
+			this.meetings.add(this.currentMeeting);
 			studentQueue.poll();
 			return "Success";
 		}
@@ -70,16 +67,15 @@ public class AdvisorQueue {
 		return this.currentMeeting;
 	}
 	public String endMeeting() {
-		if (currentMeeting == null) {
+		if (this.currentMeeting == null) {
 			return "No_current_meeting";
 		}
-		Meeting meeting = currentMeeting;
-		boolean success = meeting.endMeeting();
+		boolean success = currentMeeting.endMeeting();
 		if (success) {
 			this.currentMeeting = null;
-			meetings.add(meeting);
 			return "Success";
 		}
 		return "Unexpected_error";
 	}
+	
 }
