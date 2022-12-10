@@ -89,8 +89,8 @@ public class MainMenuController {
 			}
 		} catch (NullPointerException e) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("title");
-			alert.setContentText("Error message");
+			alert.setTitle("Alert");
+			alert.setContentText("Please select one of the advisors.");
 			alert.showAndWait();
 		}
 	}
@@ -125,7 +125,7 @@ public class MainMenuController {
 		}
 		if (meetingMessage.equals("Success")) {
 			alert.setTitle("Notification");
-			alert.setContentText("Meeting started");
+			alert.setContentText("Meeting started.");
 			alert.showAndWait();
 		}
 		if (meetingMessage.equals("Unexpected_error")) {
@@ -138,7 +138,24 @@ public class MainMenuController {
 	@FXML
 	protected void onAdvCJEndMeetingButtonClicked(ActionEvent event) {
 		System.out.println("Meeting ending...");
-		cjAQ.endMeeting();
+		String meetingMessage = cjAQ.endMeeting();
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		if (meetingMessage.equals("No_current_meeting")) {
+			alert.setTitle("Notification");
+			alert.setContentText("There is no active meeting to end.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Success")) {
+			alert.setTitle("Notification");
+			alert.setContentText("Meeting ended.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Unexpected_error")) {
+			alert.setAlertType(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setContentText("Unexpected error :(");
+			alert.showAndWait();
+		}
 	}
 
 	//Advisor Brendan
@@ -183,7 +200,24 @@ public class MainMenuController {
 	@FXML
 	protected void onAdvBrendanEndMeetingButtonClicked(ActionEvent event) {
 		System.out.println("Meeting ending...");
-		brendanAQ.endMeeting();
+		String meetingMessage = brendanAQ.endMeeting();
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		if (meetingMessage.equals("No_current_meeting")) {
+			alert.setTitle("Notification");
+			alert.setContentText("There is no active meeting to end.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Success")) {
+			alert.setTitle("Notification");
+			alert.setContentText("Meeting ended.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Unexpected_error")) {
+			alert.setAlertType(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setContentText("Unexpected error :(");
+			alert.showAndWait();
+		}
 	}
 	
 	//Advisor Alan
@@ -228,7 +262,24 @@ public class MainMenuController {
 	@FXML
 	protected void onAdvAlanEndMeetingButtonClicked(ActionEvent event) {
 		System.out.println("Meeting ending...");
-		alanAQ.endMeeting();
+		String meetingMessage = alanAQ.endMeeting();
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		if (meetingMessage.equals("No_current_meeting")) {
+			alert.setTitle("Notification");
+			alert.setContentText("There is no active meeting to end.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Success")) {
+			alert.setTitle("Notification");
+			alert.setContentText("Meeting ended.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Unexpected_error")) {
+			alert.setAlertType(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setContentText("Unexpected error :(");
+			alert.showAndWait();
+		}
 	}
 	
 	//Advisor Ryan
@@ -273,6 +324,23 @@ public class MainMenuController {
 	@FXML
 	protected void onAdvRyanEndMeetingButtonClicked(ActionEvent event) {
 		System.out.println("Meeting ending...");
-		ryanAQ.endMeeting();
+		String meetingMessage = ryanAQ.endMeeting();
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		if (meetingMessage.equals("No_current_meeting")) {
+			alert.setTitle("Notification");
+			alert.setContentText("There is no active meeting to end.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Success")) {
+			alert.setTitle("Notification");
+			alert.setContentText("Meeting ended.");
+			alert.showAndWait();
+		}
+		if (meetingMessage.equals("Unexpected_error")) {
+			alert.setAlertType(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setContentText("Unexpected error :(");
+			alert.showAndWait();
+		}
 	}
 }
