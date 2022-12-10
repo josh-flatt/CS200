@@ -91,17 +91,83 @@
           </Tab>
           <Tab text="Adv Brendan">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="advBrendanStartMeetingButton" layoutX="497.0" layoutY="51.0" mnemonicParsing="false" onAction="#onAdvBrendanStartMeetingButtonClicked" prefHeight="200.0" prefWidth="200.0" text="Start new meeting" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="advBrendanEndMeetingButton" layoutX="497.0" layoutY="259.0" mnemonicParsing="false" onAction="#onAdvBrendanEndMeetingButtonClicked" prefHeight="200.0" prefWidth="200.0" text="End meeting" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="advBrendanQueueCtLabel" layoutX="53.0" layoutY="80.0" prefHeight="58.0" prefWidth="260.0" text="Students in Queue: ">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="advBrendanRefreshButton" layoutX="87.0" layoutY="151.0" mnemonicParsing="false" onAction="#onAdvBrendanRefreshButtonClicked" text="Refresh">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
             </content>
           </Tab>
-          <Tab text="Adv Jose">
+          <Tab text="Adv Alan">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="advAlanStartMeetingButton" layoutX="497.0" layoutY="51.0" mnemonicParsing="false" onAction="#onAdvAlanStartMeetingButtonClicked" prefHeight="200.0" prefWidth="200.0" text="Start new meeting" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="advAlanEndMeetingButton" layoutX="497.0" layoutY="259.0" mnemonicParsing="false" onAction="#onAdvAlanEndMeetingButtonClicked" prefHeight="200.0" prefWidth="200.0" text="End meeting" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="advAlanQueueCtLabel" layoutX="53.0" layoutY="80.0" prefHeight="58.0" prefWidth="260.0" text="Students in Queue: ">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="advAlanRefreshButton" layoutX="87.0" layoutY="151.0" mnemonicParsing="false" onAction="#onAdvAlanRefreshButtonClicked" text="Refresh">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="Adv Ryan">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="advRyanStartMeetingButton" layoutX="497.0" layoutY="51.0" mnemonicParsing="false" onAction="#onAdvRyanStartMeetingButtonClicked" prefHeight="200.0" prefWidth="200.0" text="Start new meeting" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="advRyanEndMeetingButton" layoutX="497.0" layoutY="259.0" mnemonicParsing="false" onAction="#onAdvRyanEndMeetingButtonClicked" prefHeight="200.0" prefWidth="200.0" text="End meeting" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="advRyanQueueCtLabel" layoutX="53.0" layoutY="80.0" prefHeight="58.0" prefWidth="260.0" text="Students in Queue: ">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="advRyanRefreshButton" layoutX="87.0" layoutY="151.0" mnemonicParsing="false" onAction="#onAdvRyanRefreshButtonClicked" text="Refresh">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="Collect Data">

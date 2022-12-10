@@ -17,9 +17,11 @@ public class AdvisorQueue {
 	private Advisor advisor;
 	private Meeting currentMeeting;
 	private ArrayList<Meeting> meetings;
+	private ArrayList<Student> students;
 	
-	public AdvisorQueue(ArrayList<Meeting> meetings, Advisor advisor) {
+	public AdvisorQueue(ArrayList<Student> students, ArrayList<Meeting> meetings, Advisor advisor) {
 		this.advisor = advisor;
+		this.students = students;
 		this.studentQueue = new LinkedList<>();
 		this.currentMeeting = null;
 		this.meetings = meetings;
@@ -27,7 +29,11 @@ public class AdvisorQueue {
 	
 	// Queue actions
 	public void addStudent(Student student) {
-		studentQueue.add(student);
+		System.out.println("Student added");
+		System.out.println("To queue: "+studentQueue.add(student));
+		System.out.println("To students: "+students.add(student));
+		System.out.println("Queue count size: "+ studentQueue.size());
+		System.out.println("Queue: "+ studentQueue);
 	}
 	public void removeStudent(Student student) {
 		studentQueue.remove(student);
@@ -35,7 +41,9 @@ public class AdvisorQueue {
 	public Student peekNextStudent() {
 		return studentQueue.peek();
 	}
-	public Integer getQueueCount() {
+	public int getQueueCount() {
+		System.out.println("Queue: "+ studentQueue);
+		System.out.println("Queue count size: "+ studentQueue.size());
 		return studentQueue.size();
 	}
 	
