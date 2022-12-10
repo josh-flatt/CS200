@@ -105,6 +105,12 @@ public class MainMenuController {
 	@FXML
 	private Label advCJQueueCtLabel;
 	@FXML
+	private Label advCJMeetingStudentLabel;
+	@FXML
+	private Label advCJMeetingAdvLabel;
+	@FXML
+	private Label advCJMeetingTimeLabel;
+	@FXML
 	protected void onAdvCJRefreshButtonClicked(ActionEvent event) {
 		advCJQueueCtLabel.setText("Students in Queue: " + cjAQ.getQueueCount());
 	}
@@ -112,6 +118,7 @@ public class MainMenuController {
 	protected void onAdvCJStartMeetingButtonClicked(ActionEvent event) {
 		System.out.println("Starting meeting...");
 		String meetingMessage = cjAQ.startMeeting();
+		advCJQueueCtLabel.setText("Students in Queue: " + cjAQ.getQueueCount());
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		if (meetingMessage.equals("No_students_in_queue")) {
 			alert.setTitle("Notification");
@@ -124,6 +131,9 @@ public class MainMenuController {
 			alert.showAndWait();
 		}
 		if (meetingMessage.equals("Success")) {
+			advCJMeetingStudentLabel.setText(cjAQ.getCurrentMeeting().getStudent().getFullName());
+			advCJMeetingAdvLabel.setText(cjAQ.getCurrentMeeting().getAdvisor().getFullName());
+			advCJMeetingTimeLabel.setText(cjAQ.getCurrentMeeting().getStartDateTime().toString());
 			alert.setTitle("Notification");
 			alert.setContentText("Meeting started.");
 			alert.showAndWait();
@@ -146,6 +156,9 @@ public class MainMenuController {
 			alert.showAndWait();
 		}
 		if (meetingMessage.equals("Success")) {
+			advCJMeetingStudentLabel.setText("");
+			advCJMeetingAdvLabel.setText("");
+			advCJMeetingTimeLabel.setText("");
 			alert.setTitle("Notification");
 			alert.setContentText("Meeting ended.");
 			alert.showAndWait();
