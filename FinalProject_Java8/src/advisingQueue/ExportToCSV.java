@@ -51,7 +51,7 @@ public class ExportToCSV {
 	// Export to CSV
 	public void exportMeetings() {
 		try {
-			FileOutputStream fileStream = new FileOutputStream("export/meetingExport.csv");
+			FileOutputStream fileStream = new FileOutputStream("meetingExport.csv");
 			PrintWriter outFS = new PrintWriter(fileStream);
 			String endDateTime = "";
 			outFS.println("ID" + "," + "Student" + "," + "StudentEmail" + "," + "Advisor" + ","
