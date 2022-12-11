@@ -1,34 +1,14 @@
-/**
- * 
- */
 package advisingQueue;
 
-
 /**
- * @author joshm
- *
+ * @author Josh Flatt
+ * CS 200 Final Project
+ * 10 December 2022
  */
 public class Student extends Person{
-
-	private String major;
 	
+	// Constructors
 	public Student(String firstName, String lastName, String email) {
 		super(firstName, lastName, email);
-		this.major = "";
-	}
-	public Student(String firstName, String lastName, String email, String major) {
-		super(firstName, lastName, email);
-		this.major = major;
-	}
-	
-	
-	// Setters
-	public void SetMajor(String major) {
-		this.major = major;
-	}
-	
-	// Getters
-	public String GetMajor() {
-		return this.major;
 	}
 }

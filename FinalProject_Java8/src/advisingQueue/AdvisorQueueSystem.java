@@ -1,15 +1,14 @@
-/**
- * 
- */
 package advisingQueue;
 import java.util.ArrayList;
 
 /**
- * @author joshm
- *
+ * @author Josh Flatt
+ * CS 200 Final Project
+ * 10 December 2022
  */
 public class AdvisorQueueSystem {
 	
+	private ExportToCSV exportSystem;
 	private ArrayList<Student> students;
 	private ArrayList<Meeting> meetings;
 	private AdvisorQueue advisorQueueA = null;
@@ -21,10 +20,12 @@ public class AdvisorQueueSystem {
 	public AdvisorQueueSystem() {
 		this.students = new ArrayList<>();
 		this.meetings = new ArrayList<>();
+		this.exportSystem = new ExportToCSV(this.meetings);
 	}
 	public AdvisorQueueSystem(ArrayList<Student> students) {
 		this.students = students;
 		this.meetings = new ArrayList<>();
+		this.exportSystem = new ExportToCSV(this.meetings);
 	}
 
 	// Getters
@@ -35,7 +36,7 @@ public class AdvisorQueueSystem {
 		return this.meetings;
 	}
 	
-	// Setters - Handled elsewhere
+	// Setters (None)
 	
 	// Advisor Queues
 	public AdvisorQueue CreateAdvisorQueueA(Advisor advisor) {
@@ -55,7 +56,13 @@ public class AdvisorQueueSystem {
 		return this.advisorQueueD;
 	}
 
-	public void exportData(String exportType) {
+	// Export Data
+	public void exportMeetings() {
+		exportSystem.descendSortByDuration();
+//		exportSystem.ascendSortByStartTimeDate();
+		exportSystem.exportMeetings();
+	}
+	public void exportStudents() {
 		
 	}
 }
