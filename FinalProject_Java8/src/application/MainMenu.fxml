@@ -354,6 +354,11 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
+                        <Button fx:id="exportDataButton" layoutX="346.0" layoutY="503.0" mnemonicParsing="false" onAction="#onExportDataButtonPressed" prefHeight="41.0" prefWidth="109.0" text="Export Data">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
                      </children></AnchorPane>
             </content>
           </Tab>

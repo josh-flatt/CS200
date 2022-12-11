@@ -279,6 +279,8 @@ public class MainMenuController {
 	@FXML
 	protected Button meetingsRefreshButton;
 	@FXML
+	protected Button exportDataButton;
+	@FXML
 	protected TableView<Meeting> tableView;
 	@FXML
 	protected TableColumn<Meeting, String> meetingIDColumn;
@@ -297,7 +299,14 @@ public class MainMenuController {
 	@FXML
 	protected void onMeetingsRefreshButtonClicked(ActionEvent event) {
 		tableView.setItems(FXCollections.observableArrayList(advisingQueueSystem.getMeetings()));
+	}
+	@FXML
+	protected void onExportDataButtonPressed(ActionEvent event) {
 		advisingQueueSystem.exportMeetings();
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Notification");
+		alert.setContentText("Data Successfully exported.");
+		alert.showAndWait();
 	}
 	
 	// Initialize

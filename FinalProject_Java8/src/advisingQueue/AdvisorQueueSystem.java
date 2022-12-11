@@ -62,7 +62,5 @@ public class AdvisorQueueSystem {
 //		exportSystem.ascendSortByStartTimeDate();
 		exportSystem.exportMeetings();
 	}
-	public void exportStudents() {
-		
-	}
+
 }

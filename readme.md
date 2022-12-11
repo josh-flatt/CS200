@@ -1,4 +1,4 @@
-# Final Project Requirements
+# Final Project Tech
 
 ## Oracle Java 8
 - [Oracle Java 8 JDK](https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html)
@@ -17,12 +17,12 @@
 ## Compiler
 - Compliance level 1.8
 
-## Runtime
-
-
 ## JRE
 - 1.8.0_341
 
 ## Libraries
 - JavaFX SDK
 - JRE System Library [jre 1.8.0_341]
+
+## SceneBuilder (Not required to run program)
+- [SceneBuilder](https://gluonhq.com/products/scene-builder/)
