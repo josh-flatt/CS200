@@ -1,8 +1,4 @@
-/**
- * 
- */
 package application;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +8,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -23,12 +18,13 @@ import java.time.LocalDateTime;
 import advisingQueue.*;
 
 /**
- * @author joshm
- *
+ * @author Josh Flatt
+ * CS 200 Final Project
+ * 10 December 2022
  */
 public class MainMenuController {
 	
-	private AdvisorQueueSystem advisingQueueSystem = new AdvisorQueueSystem();;
+	private AdvisorQueueSystem advisingQueueSystem = new AdvisorQueueSystem();
 	private AdvisorQueue cjAQ = advisingQueueSystem
 					.CreateAdvisorQueueA(new Advisor("CJ", "Cron", "firstBaseman@rockies.com"));
 	private AdvisorQueue brendanAQ = advisingQueueSystem
@@ -78,9 +74,9 @@ public class MainMenuController {
 				validAdvisor = true;
 			}
 			else if (!validAdvisor) {
-				throw new NullPointerException();
+				throw new Exception();
 			}
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Alert");
 			alert.setContentText("Please select one of the advisors.");
@@ -301,6 +297,7 @@ public class MainMenuController {
 	@FXML
 	protected void onMeetingsRefreshButtonClicked(ActionEvent event) {
 		tableView.setItems(FXCollections.observableArrayList(advisingQueueSystem.getMeetings()));
+		advisingQueueSystem.exportMeetings();
 	}
 	
 	// Initialize
@@ -308,13 +305,16 @@ public class MainMenuController {
 	public void initialize() {
 		studentAdvisorSelection.setItems(advisorList);
 		
-		// set up columns in the table
-		meetingIDColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("ID"));
-		studentNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentFullName"));
-		studentEmailColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentEmail"));
-		advisorFirstNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableAdvisorFirstName"));
-		meetingStartColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("startDateTime"));
-		meetingEndColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("endDateTime"));
-		meetingDurationColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableDuration"));
+		// set up columns in the table on condition that meetings already exist
+		if (advisingQueueSystem.getMeetings().size() > 0) {
+			tableView.setItems(FXCollections.observableArrayList(advisingQueueSystem.getMeetings()));
+			meetingIDColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("ID"));
+			studentNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentFullName"));
+			studentEmailColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableStudentEmail"));
+			advisorFirstNameColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableAdvisorFirstName"));
+			meetingStartColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("startDateTime"));
+			meetingEndColumn.setCellValueFactory(new PropertyValueFactory<Meeting, LocalDateTime>("endDateTime"));
+			meetingDurationColumn.setCellValueFactory(new PropertyValueFactory<Meeting, String>("tableDuration"));
+		}
 	}
 }

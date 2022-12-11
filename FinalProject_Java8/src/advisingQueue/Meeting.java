@@ -1,18 +1,16 @@
-/**
- * 
- */
 package advisingQueue;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.Duration;
 
 /**
- * @author joshm
- *
+ * @author Josh Flatt
+ * CS 200 Final Project
+ * 10 December 2022
  */
 public class Meeting {
 	
-	static Integer meetingcount = 0;
+	static Integer meetingcount = 0; // Count of ALL meetings
 	
 	private Integer ID;
 	private Student student;
@@ -22,11 +20,13 @@ public class Meeting {
 	private LocalDateTime endDateTime;
 	private ArrayList<String> notes;
 	
+	// Fields used only for UI display/export
 	private String tableStudentFullName;
 	private String tableStudentEmail;
 	private String tableAdvisorFirstName;
 	private String tableDuration;
 	
+	// Constructors
 	public Meeting(Student student, Advisor advisor) {
 		meetingcount++;
 		this.ID = meetingcount;
@@ -68,6 +68,8 @@ public class Meeting {
 		if (isActive) { return Duration.between(startDateTime, LocalDateTime.now()); }
 		return Duration.between(startDateTime, endDateTime);
 	}
+	
+	//Getters only for UI display/export
 	public String getTableStudentFullName() {
 		return this.tableStudentFullName;
 	}

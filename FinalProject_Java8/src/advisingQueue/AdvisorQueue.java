@@ -1,24 +1,22 @@
-/**
- * 
- */
 package advisingQueue;
-
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Queue;
 
 /**
- * @author joshm
- *
+ * @author Josh Flatt
+ * CS 200 Final Project
+ * 10 December 2022
  */
 public class AdvisorQueue {
 
 	private Queue<Student> studentQueue;
 	private Advisor advisor;
 	private Meeting currentMeeting;
-	private ArrayList<Meeting> meetings;
-	private ArrayList<Student> students;
+	private ArrayList<Meeting> meetings; // Contains ALL meetings between AdvisorQueues
+	private ArrayList<Student> students; // Contains ALL students between AdvisorQueues
 	
+	// Constructors
 	public AdvisorQueue(ArrayList<Student> students, ArrayList<Meeting> meetings, Advisor advisor) {
 		this.advisor = advisor;
 		this.students = students;
