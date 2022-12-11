@@ -23,8 +23,11 @@
 - JRE System Library [JavaSE-18]
 
 # Current final project plan usage
-- Oracle Java 8 JDK (jdk-8u341)
-- JavaFX included
-- Best suited for JavaPOS
-- JavaPOS version (####)?
+- [Oracle Java 8 JDK](https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html)
+    - JDK 8u341, Windows 64-bit
+    - JavaFX included
+- [Eclipse 2022-09](https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2022-12/R/eclipse-inst-jre-win64.exe)
+    - Windows, 64-bit
+    - Recently, Eclipse released 2022-12, however, I believe it should still work on that version as well.
+- [e(fx)clipse]
 - Will it work in blueJ? Nope! :(
