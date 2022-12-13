@@ -1,2 +1,4 @@
 ID,Student,StudentEmail,Advisor,StartDateTime,EndDateTime,Duration
-1,asdf fdsa,fasdcv,CJ,2022-12-10T21:41:45.456,2022-12-10T21:41:46.349,0m 0s
+3,James Doe,jdoe@gmail.com,Alan,2022-12-13T10:14:29.408,2022-12-13T10:15:49.845,1m 20s
+1,John Doe,jdoe@gmail.com,CJ,2022-12-13T10:12:07.807,2022-12-13T10:13:23.197,1m 15s
+2,Jane Doe,jdoe@gmail.com,Brendan,2022-12-13T10:12:31.749,2022-12-13T10:13:20.604,0m 48s
